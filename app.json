@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "testapp",
+    "name": "Feed notícias",
     "slug": "testapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -43,6 +43,10 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+
+    "extra": {
+      "newsApiKey": "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=434eadc323bb4afab1cd061737d62897"
     }
   }
 }
