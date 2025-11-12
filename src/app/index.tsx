@@ -1,69 +1,52 @@
-import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { useLoginViewModel } from "../viewmodel/UserLoginViewModel";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { router } from "expo-router";
 
 export default function Index() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const { userId, loading, error, handleLogin } = useLoginViewModel();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    useEffect(() => {
-        if (userId) {
-            router.replace("/home");
-        } else {
-            setEmail('');
-            setPassword('');
-        }
-    }, [userId, error]);
-
-    if (loading) {
-        return <Text>loading...</Text>;
+  function handleLogin() {
+    if (email === "User@gmail.com" && password === "123456") {
+      router.replace("/home");
+    } else {
+      alert("Credenciais inválidas");
     }
+  }
 
-    return (
-        <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="email"
-                value={email}
-                onChangeText={setEmail}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-            />
-            <Button
-                title="login"
-                onPress={() => handleLogin(email, password)}
-            />
-            {error ? <Text style={styles.error}>Erro: {error}</Text> : null}
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="email: User@gmail.com"
+        value={email}
+        onChangeText={setEmail}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Senha: 123456"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+
+      <Button title="Entrar" onPress={handleLogin} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
-        backgroundColor: '#fff',
-    },
-    input: {
-        width: '100%',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        marginBottom: 16,
-        paddingHorizontal: 8,
-        borderRadius: 4,
-    },
-    error: {
-        color: 'red',
-        marginTop: 8,
-    },
+  container: { flex: 1, justifyContent: "center", padding: 20 },
+  title: { fontSize: 24, textAlign: "center", marginBottom: 20 },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    marginBottom: 12,
+    padding: 10,
+    borderRadius: 8,
+  },
+  
 });
