@@ -19,14 +19,14 @@ export default function Home() {
     fetchNews();
   }, []);
 
-  // 🔄 Função para atualizar ao arrastar
+  // Função para atualizar ao arrastar
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchNews();
     setRefreshing(false);
   };
 
-  // 🔗 Abre a tela de detalhes da notícia
+  //  Abre a tela de detalhes da notícia
   function openArticle(item: any) {
     router.push({
       pathname: "/article/[article]",
@@ -34,7 +34,7 @@ export default function Home() {
     });
   }
 
-  // 📰 Estado vazio — nenhuma notícia
+  // Estado vazio — nenhuma notícia
   const renderEmptyState = () => (
     <View style={styles.empty}>
       <Text style={styles.emptyTitle}>Nenhuma notícia encontrada</Text>
